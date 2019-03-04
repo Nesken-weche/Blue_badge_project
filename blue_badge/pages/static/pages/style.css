@@ -1,0 +1,14 @@
+:root {
+    --primary-color: #E4DCE2;
+    --primary-dark:#D3B3CB;
+    --secondary-color: #FFD093;
+    --secondary-dark: #FFB554;
+    --accent: #5B75B0;
+    --accent-2: #61646B;
+}
+
+.homepic {
+    width: 200px;
+    height: 200px;
+    
+}
