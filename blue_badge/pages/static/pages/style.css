@@ -7,8 +7,40 @@
     --accent-2: #61646B;
 }
 
-.homepic {
-    width: 200px;
-    height: 200px;
-    
+.my_navbar {
+    background-color: var(--secondary-color);
+    background-image: url('../img/crisp-paper-ruffles.png');
 }
+
+.nav-link {
+    color: var(--accent);
+}
+
+.navbar-brand {
+    color: var(--accent)
+}
+
+body {
+    background-image: url('../img/crisp-paper-ruffles.png');
+    background-color: var(--secondary-dark);
+}
+
+.header {
+    background-image: url('../img/stock1.jpeg');
+    height: 300px;
+    width: 100%;
+}
+
+.container {
+    margin-left: 175px !important;
+    margin-right: 300px !important; 
+    background-color: var(--secondary-color);
+    background-image: url('../img/crisp-paper-ruffles.png');
+}
+
+#my_footer {
+    text-align: center;
+    background-color: var(--secondary-color);
+    background-image: url('../img/crisp-paper-ruffles.png');
+}
+
