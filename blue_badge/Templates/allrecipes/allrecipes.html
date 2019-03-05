@@ -3,10 +3,12 @@
 {% block content %}
 <div class="container">
     <br>
-    <h1 class='AR_heading'> All recipes </h1>
+    <div class='AR_heading'>
+        <h1> All recipes </h1>
+    </div>
     <div class = 'recipe_display'>
-        {% if recipes_list %}
-            {% for recipe in recipes_list %}
+        {% if recipe_list %}
+            {% for recipe in recipe_list %}
                 <div class='recipe_item'>
                     <h3>{{ recipe.name }}</h3>
                     <p>
@@ -17,6 +19,7 @@
 
             {% endfor %}
         {% else %}
+            <br><br><br>
             <h2>No Recipes have been created yet</h2>
         {% endif %}
     </div>
