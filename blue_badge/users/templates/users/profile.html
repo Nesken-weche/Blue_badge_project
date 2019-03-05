@@ -2,63 +2,50 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <br>
-<div class="content-section">
-    <div class="media">
-        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
-        <div class="media-body">
-            <h2 class="account-heading">{{ user.username }}</h2>
-            <p class="text-secondary">{{ user.email }}</p>
-        </div>
-    </div>
-    <br>
-    <br>
-    <div class="container">
-        <br>
-        <div class='AR_heading'>
-            <h1> All recipes </h1>
-        </div>
-        <div class='recipe_display'>
-            {% if recipe_list %}
-            {% for recipe in recipe_list %}
-            <div class='recipe_item'>
-                <h3>{{ recipe.name }}</h3>
-                <p>
-                    <h4>Ingredients:</h4> {{ recipe.ingredients }} <br>
-                    <h4>Instructions:</h4> {{ recipe.instructions }}
-                </p>
+<div class='row'>
+    <div class='col-1'></div>
+    <div class="content-section container-fluid col-10">
+        <div class="media row">
+            <div class='col-3'></div>
+            <img class="rounded-circle account-img col-3" src="../../static/users/bread_clipart.gif"><br>
+            <div class="media-body col-3">
+                <h2 class="account-heading">{{ user.username }}</h2>
+                <p class="text-secondary">{{ user.email }}</p>
             </div>
-    
-            {% endfor %}
-            {% else %}
-            <br><br><br>
-            <h2>No Recipes have been created yet</h2>
-            {% endif %}
+            <div class='col-3'></div>
+        </div>
+        <br>
+        <br>
+        <div class="container">
+            <br>
+            <div class='AR_heading'>
+                <h1> My Recipes </h1>
+            </div>
+                {% if recipe_list %}
+                    {% for recipe in recipe_list %}
+                        <div class='recipe_item'>
+                            <h3>{{ recipe.name }}</h3>
+                            <p>
+                                <h4>Ingredients:</h4> {{ recipe.ingredients }} <br>
+                                <h4>Instructions:</h4> {{ recipe.instructions }}
+                            </p>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <br><br><br>
+                    <h2>No Recipes have been created yet</h2>
+                {% endif %}
+        </div>
+        <div class='row'>
+                <div class='col-4'></div>
+                <div class="addrecipebutton col-4">
+                <a href="{% url 'addRecipe' %}" class="btn btn-primary add_recipe_btn">Add Recipe</a>
+                </div>
+                <div class='col-4'></div>
+                <br><br>
         </div>
     </div>
-    <div class='container'>
-        <br>
-        <h1 class='AR_heading'>Add Recipe</h1>
-        <form class="add_form" action="{% url 'addRecipe' %}" method="POST">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="name">Name of Recipe</label>
-                <input name="name" type="text" class="form-control" placeholder="ex: Chocolate Cake">
-            </div>
-            <div class="form-group"></div>
-            <label for="">Ingredients</label>
-            <input name="ingredients" type="text" class="form-control"
-                placeholder="ex: Eggs, flour, sugar, milk, chocolate">
-    </div>
-    <div class="form-group">
-        <label for="">Instructions</label>
-        <input name="instructions" type="text" class="form-control"
-            placeholder="ex: Mix in large bowl, pour into pan, bake for 1 hr at 450 degrees">
-    </div>
-    <div class="form-group">
-        <input type="submit" class="btn btn-success form_submit">
-    </div>
-    <br><br>
-    </form>
-    </div>
+    <div class='col-1'></div>
 </div>
+<br><br><br>
 {% endblock %}
