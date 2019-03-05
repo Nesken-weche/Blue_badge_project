@@ -55,5 +55,8 @@ body {
 
 .recipe_item {
     background-color: var(--accent);
-    background-image: url('../img/crisp-paper-ruffles.png')
+    background-image: url('../img/crisp-paper-ruffles.png');
+    border-radius: 80px;
+    display: flex;
+    padding: 12px;
 }
