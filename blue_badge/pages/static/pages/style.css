@@ -23,6 +23,8 @@
 body {
     background-image: url('../img/crisp-paper-ruffles.png');
     background-color: var(--secondary-dark);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', 'Arial', 'sans-serif';
+    height: 100%;
 }
 
 .header {
@@ -34,13 +36,53 @@ body {
 .container {
     margin-left: 175px !important;
     margin-right: 300px !important; 
+    /* padding-top: 35px !important; */
     background-color: var(--secondary-color);
     background-image: url('../img/crisp-paper-ruffles.png');
+    min-height: 100%;
 }
 
 #my_footer {
     text-align: center;
     background-color: var(--secondary-color);
     background-image: url('../img/crisp-paper-ruffles.png');
+    margin-bottom: 0px;
+    position: absolute;
+    height: 100px;
+    width: 100%;
+}
+
+
+
+.AR_heading {
+    text-align: center;
+    font-size: 30px;
+}
+
+#allrecipecontainer {
+    background-image: url('../img/crisp-paper-ruffles.png');
+    background-color: var(--secondary-dark);
+}
+
+.recipe_item {
+    background-color: var(--accent);
+    background-image: url('../img/crisp-paper-ruffles.png');
+    border-radius: 80px;
+    padding: 20px 25px 20px 35px;
+    color: var(--primary-color)
+}
+
+.addrecipebutton {
+    text-align: center;
+}
+
+.add_recipe_btn {
+    background-color: var(--accent-2);
+}
+
+.buffer {
+    height: 156px;
+    background-image: url('../img/crisp-paper-ruffles.png');
+    background-color: var(--secondary-dark);
 }
 

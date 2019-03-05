@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container" id="allrecipecontainer">
+    <br>
+    <div class='AR_heading'>
+        <h1> All recipes </h1>
+    </div>
+    <div class = 'recipe_display'>
+        {% if recipe_list %}
+            {% for recipe in recipe_list %}
+                <div class='recipe_item'>
+                    <h2>{{ recipe.name }}</h2>
+                    <p>
+                        <h4>Ingredients:</h4> {{ recipe.ingredients }} 
+                        <br><br><br>
+                        <h4>Instructions:</h4> {{ recipe.instructions }}
+                    </p>
+                </div>
+                <br>
+
+            {% endfor %}
+        {% else %}
+            <br><br><br>
+            <h2>No Recipes have been created yet</h2>
+        {% endif %}
+    </div>
+    <div class="addrecipebutton">
+    <a href="{% url 'addRecipe' %}" class="btn btn-primary add_recipe_btn">Add Recipe</a>
+    <br><br><br>
+    </div>
+</div>
+
+
+{% endblock %}
