@@ -25,3 +25,15 @@ def add(request):
 
     return render(request, 'allrecipes/addrecipe.html')
 
+def myrecipe(request):
+    if requested.method =="POST":
+        my_recipe = models.Recipe(name=request.POST["name"], ingredients=request.POST["ingredients"], instructions=request.POST["instructions"])
+        my_recipe.save()
+        return redirect('allRecipes')
+    recipes_list = models.Recipe.objects.all()
+    context = {
+        'recipe_list': recipes_list,
+    }
+
+    return render(request, 'allrecipes/allrecipes.html', context=context)
+
