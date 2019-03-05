@@ -2,7 +2,27 @@
 
 {% block content %}
 <div class="container">
-    
+    <br>
+    <div class='AR_heading'>
+        <h1> All recipes </h1>
+    </div>
+    <div class = 'recipe_display'>
+        {% if recipe_list %}
+            {% for recipe in recipe_list %}
+                <div class='recipe_item'>
+                    <h3>{{ recipe.name }}</h3>
+                    <p>
+                        <h4>Ingredients:</h4> {{ recipe.ingredients }} <br>
+                        <h4>Instructions:</h4> {{ recipe.instructions }}
+                    </p>
+                </div>
+
+            {% endfor %}
+        {% else %}
+            <br><br><br>
+            <h2>No Recipes have been created yet</h2>
+        {% endif %}
+    </div>
 </div>
 
 
