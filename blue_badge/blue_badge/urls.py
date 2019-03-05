@@ -28,7 +28,8 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
     path('', include('pages.urls'), name='homePage'),
-    path('all/', allrecipes_views.all, name="allrecipes"),
+    path('all/', allrecipes_views.all, name="allRecipes"),
+    path('add/', allrecipes_views.add, name="addRecipe"),
 ]
 
 if settings.DEBUG:
