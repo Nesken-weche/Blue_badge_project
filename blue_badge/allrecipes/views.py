@@ -32,3 +32,10 @@ def myrecipe(request):
 
     return render(request, 'users/profile.html', context=context)
 
+def delete(request):
+    if request.method == 'POST':
+        my_recipe = models.Recipe.objects.get(id=request.POST['id'])
+        my_recipe.delete()
+
+        return redirect('myRecipe')
+

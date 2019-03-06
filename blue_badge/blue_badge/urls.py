@@ -30,6 +30,7 @@ urlpatterns = [
     path('all/', allrecipes_views.all, name="allRecipes"),
     path('add/', allrecipes_views.add, name="addRecipe"),
     path('myrecipes/', allrecipes_views.myrecipe, name="myRecipe"),
+    path('profile/', user_views.profile, name='profile'),
 ]
 
 if settings.DEBUG:
