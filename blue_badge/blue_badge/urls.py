@@ -29,8 +29,9 @@ urlpatterns = [
     path('', include('pages.urls'), name='homePage'),
     path('all/', allrecipes_views.all, name="allRecipes"),
     path('add/', allrecipes_views.add, name="addRecipe"),
+    path('delete/', allrecipes_views.delete, name="delRecipe"),
     path('myrecipes/', allrecipes_views.myrecipe, name="myRecipe"),
-    path('profile/', user_views.profile, name='profile'),
+    path('profile/', user_views.edit, name='profile'),
 ]
 
 if settings.DEBUG:

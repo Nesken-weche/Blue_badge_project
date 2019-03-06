@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}
 {% block content %}
 <br>
 <div class='row'>
@@ -14,7 +13,12 @@
             </div>
             <div class='col-3'></div>
         </div>
-        <a href="{% url 'profile' %}" class="btn btn-primary">Edit Profile</a>
+        <br>
+        <div class='row'>
+            <div class='col-4'></div>
+            <a href="{% url 'profile' %}" class="btn btn-info col-4">Edit Profile</a>
+            <div class='col-4'></div>
+        </div>
         <br>
         <br>
         <div class="container">
@@ -30,6 +34,11 @@
                                 <h4>Ingredients:</h4> {{ recipe.ingredients }} <br>
                                 <h4>Instructions:</h4> {{ recipe.instructions }}
                             </p>
+                            <form action="{% url 'delRecipe' %}" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="id" value="{{ recipe.id }}">
+                                <input type="submit" value="Delete" class="btn btn-warning">
+                            </form>
                         </div>
                         <br>
                     {% endfor %}
