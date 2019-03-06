@@ -39,3 +39,6 @@ def delete(request):
 
         return redirect('myRecipe')
 
+def update(request):
+    pass
+

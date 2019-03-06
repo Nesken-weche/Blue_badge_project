@@ -29,7 +29,7 @@ def profile(request):
            u_form.save()
            p_form.save()
            messages.success(request, f'Your account has been updated!')
-           return redirect('profile')
+           return redirect('myRecipe')
 
    else:
        u_form = UserUpdateForm(instance=request.user)
@@ -40,8 +40,6 @@ def profile(request):
        'p_form': p_form
    }
 
-   return render(request, 'users/profile.html', context)
+   return render(request, 'users/edit_profile.html', context)
 
-def edit(request):
-    return render(request, 'users/edit_profile.html')
 
