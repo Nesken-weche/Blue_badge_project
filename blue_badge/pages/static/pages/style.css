@@ -79,6 +79,7 @@ body {
 
 .add_recipe_btn {
     background-color: var(--accent-2);
+    border-color: var(--accent-2);
     margin: 0px !important;
 }
 
@@ -90,10 +91,5 @@ body {
     height: 156px;
     background-image: url('../img/crisp-paper-ruffles.png');
     background-color: var(--secondary-dark);
-}
-
-.account-img {
-    height: 200px !important;
-    width: 200px !important;
 }
 
