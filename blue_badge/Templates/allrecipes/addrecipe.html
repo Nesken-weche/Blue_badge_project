@@ -20,8 +20,16 @@
                 <label for="">Instructions</label>
                 <input name="instructions" type="text" class="form-control" placeholder="ex: Mix in large bowl, pour into pan, bake for 1 hr at 450 degrees">
             </div>
+            <!-- Uncomment below code when ready to make publishing option functional -->
+            <!-- <div class="form-group">
+                <label for="">Make public (optional)</label>
+                <input type="checkbox" class="publish">
+            </div> -->
             <div class="form-group">
                 <input type="submit" class="btn btn-success form_submit">
+            </div>
+            <div>
+                <input type="hidden" name="user" value=request.user.id>
             </div>
             <br><br>
         </form>
