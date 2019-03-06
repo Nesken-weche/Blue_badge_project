@@ -7,7 +7,7 @@
     <div class="content-section container-fluid col-10">
         <div class="media row">
             <div class='col-3'></div>
-            <img class="rounded-circle account-img col-3" src="../../static/users/bread_clipart.gif"><br>
+            <img class="rounded-circle account-img col-3" src="../../static/users/default.gif"><br>
             <div class="media-body col-3">
                 <h2 class="account-heading">{{ user.username }}</h2>
                 <p class="text-secondary">{{ user.email }}</p>
@@ -30,6 +30,7 @@
                                 <h4>Instructions:</h4> {{ recipe.instructions }}
                             </p>
                         </div>
+                        <br>
                     {% endfor %}
                 {% else %}
                     <br><br><br>

@@ -32,15 +32,17 @@
             <h2>No Recipes have been created yet</h2>
         {% endif %}
     <!-- </div> -->
-    <div class='row'>
-        <div class='col-4'></div>
-        <div class="addrecipebutton col-4">
-        <a href="{% url 'addRecipe' %}" class="btn btn-primary add_recipe_btn">Add Recipe</a>
+    {% if user.is_authenticated %}
+        <div class='row'>
+            <div class='col-4'></div>
+            <div class="addrecipebutton col-4">
+            <a href="{% url 'addRecipe' %}" class="btn btn-primary add_recipe_btn">Add Recipe</a>
+            </div>
+            <div class='col-4'></div>
         </div>
-        <div class='col-4'></div>
-    </div>
-    <br><br><br>
-    </div>
+        <br><br><br>
+        </div>
+    {% endif %}
 </div>
 
 
