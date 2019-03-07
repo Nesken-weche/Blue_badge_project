@@ -1,35 +1,57 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container" id="allrecipecontainer">
+<div class="container-fluid" id="allrecipecontainer">
     <br>
-    <div class='AR_heading'>
-        <h1> All recipes </h1>
+    <div class='row'>
+        <div class='col-3'></div>
+        <div class='AR_heading col-6'>
+            <h1> All recipes </h1>
+        </div>
+        <div class='col-3'></div>
     </div>
-    <div class = 'recipe_display'>
+    <!-- <div class = 'recipe_display'> -->
         {% if recipe_list %}
             {% for recipe in recipe_list %}
-                <div class='recipe_item'>
+                <div class='row'>
+                <div class='col-1'></div>
+                <div class='recipe_item col-10'>
                     <h2>{{ recipe.name }}</h2>
                     <p>
                         <h4>Ingredients:</h4> {{ recipe.ingredients }} 
                         <br><br><br>
                         <h4>Instructions:</h4> {{ recipe.instructions }}
                     </p>
+                    {% if recipe.user == request.user %}
+                    <form action="{% url 'delRecipe' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" value="{{ recipe.id }}">
+                        <input type="submit" value="Delete" class="btn btn-warning delete_recipe_btn">
+                    </form>
+                    {% endif %}
+                </div>
+                <div class='col-1'></div>    
                 </div>
                 <br>
-
             {% endfor %}
         {% else %}
             <br><br><br>
             <h2>No Recipes have been created yet</h2>
         {% endif %}
-    </div>
-    <div class="addrecipebutton">
-    <a href="{% url 'addRecipe' %}" class="btn btn-primary add_recipe_btn">Add Recipe</a>
-    <br><br><br>
-    </div>
+    <!-- </div> -->
+    {% if user.is_authenticated %}
+        <div class='row'>
+            <div class='col-4'></div>
+            <div class="addrecipebutton col-4">
+            <a href="{% url 'addRecipe' %}" class="btn btn-primary add_recipe_btn">Add Recipe</a>
+            </div>
+            <div class='col-4'></div>
+        </div>
+        <br><br><br>
+        </div>
+    {% endif %}
 </div>
+<br>
 
 
 {% endblock %}
