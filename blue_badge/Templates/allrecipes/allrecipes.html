@@ -26,7 +26,7 @@
                     <form action="{% url 'delRecipe' %}" method="POST">
                         {% csrf_token %}
                         <input type="hidden" name="id" value="{{ recipe.id }}">
-                        <input type="submit" value="Delete" class="btn btn-warning">
+                        <input type="submit" value="Delete" class="btn btn-warning delete_recipe_btn">
                     </form>
                     {% endif %}
                 </div>

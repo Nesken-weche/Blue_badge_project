@@ -1,6 +1,7 @@
 :root {
-    --primary-color: #E4DCE2;
-    --primary-dark:#D3B3CB;
+    --primary-color: rgb(207, 192, 204);
+    --primary-light: rgb(231, 220, 229);
+    --primary-dark:rgb(189, 151, 179);
     --secondary-color: #FFD093;
     --secondary-dark: #FFB554;
     --accent: #5B75B0;
@@ -52,8 +53,6 @@ body {
     width: 100%;
 }
 
-
-
 .AR_heading {
     text-align: center;
     font-size: 30px;
@@ -69,7 +68,7 @@ body {
     background-image: url('../img/crisp-paper-ruffles.png');
     border-radius: 80px;
     padding: 20px 25px 20px 35px;
-    color: var(--primary-color);
+    color: var(--primary-light);
 }
 
 .addrecipebutton {
@@ -78,12 +77,8 @@ body {
 }
 
 .add_recipe_btn {
-    background-color: var(--accent-2);
-    border-color: var(--accent-2);
-    margin: 0px !important;
-}
-
-.btn-primary {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
     margin: 0px !important;
 }
 
@@ -93,3 +88,13 @@ body {
     background-color: var(--secondary-dark);
 }
 
+.delete_recipe_btn {
+    background-color: var(--secondary-dark);
+    border-color: var(--secondary-dark);
+    margin-left: 15px;
+}
+
+.edit_profile_btn {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+}
