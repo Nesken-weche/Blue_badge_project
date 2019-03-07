@@ -6,6 +6,7 @@
     --secondary-dark: #FFB554;
     --accent: #5B75B0;
     --accent-2: #61646B;
+    --recipe_item_bg: {var(--accent), url('../img/crisp-paper-ruffles')};
 }
 
 .my_navbar {
@@ -69,6 +70,13 @@ body {
     border-radius: 80px;
     padding: 20px 25px 20px 35px;
     color: var(--primary-light);
+    /* border: 2px dotted transparent;
+    box-shadow: inset 0px 0px 0px 2px var(--primary-light); */
+}
+
+.stitched {
+    border: 2px dashed var(--primary-light);
+    box-shadow: 0px 0px 0px 3px var(--accent);
 }
 
 .addrecipebutton {
@@ -80,6 +88,11 @@ body {
     background-color: var(--primary-dark);
     border-color: var(--primary-dark);
     margin: 0px !important;
+}
+
+.add_recipe_btn:hover {
+    background-color: rgb(177, 137, 166);
+    border-color: rgb(177, 137, 166);
 }
 
 .buffer {
@@ -97,4 +110,9 @@ body {
 .edit_profile_btn {
     background-color: var(--primary-dark);
     border-color: var(--primary-dark);
+}
+
+.edit_profile_btn:hover {
+    background-color: rgb(177, 137, 166);
+    border-color: rgb(177, 137, 166);
 }
