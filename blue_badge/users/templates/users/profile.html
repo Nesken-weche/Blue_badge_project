@@ -29,10 +29,11 @@
             </div>
                 {% if my_recipes_list %}
                     {% for recipe in my_recipes_list %}
-                        <div class='recipe_item'>
+                        <div class='recipe_item stitched'>
                             <h3>{{ recipe.name }}</h3>
                             <p>
                                 <h4>Ingredients:</h4> {{ recipe.ingredients }} <br>
+                                <br>
                                 <h4>Instructions:</h4> {{ recipe.instructions }}
                             </p>
                             <form action="{% url 'delRecipe' %}" method="POST">
