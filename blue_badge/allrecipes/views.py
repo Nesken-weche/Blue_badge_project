@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from . import models
+# from django.views.generic import UpdateView
+# from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 def all(request):
@@ -40,5 +42,30 @@ def delete(request):
         return redirect('myRecipe')
 
 def update(request):
-    pass
+    if request.method == 'POST':
+        my_recipe = models.Recipe.objects.get(id=request.POST['id'], name=request.POST['name'], ingredients=request.POST['ingredients'], instructions=request.POST['instructions'])
+        id = my_recipe.id 
+        recname = my_recipe.name
+        ingredients = my_recipe.ingredients
+        instructions = my_recipe.instructions
+
+        context = {
+            'id': id,
+            'name': reccname,
+            'ingredients': ingredients,
+            'instructions': instructions
+        }
+    
+    return render(request, 'allrecipes/updaterecipe.html', context=context)
+
+
+# class Update(UpdateView, LoginRequiredMixin):
+#     def Update(request):
+#         if request.method == 'POST':
+#             model = models.Recipe.objects.get(id=request.POST['id'])
+#             fields = ['name', 'ingredients', 'instructions']
+
+#     def form_valid(self, form):
+#         form.instance.author = self.request.user
+#         return super().form_valid(form)
 

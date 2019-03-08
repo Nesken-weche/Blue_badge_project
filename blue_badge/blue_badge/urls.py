@@ -30,6 +30,8 @@ urlpatterns = [
     path('all/', allrecipes_views.all, name="allRecipes"),
     path('add/', allrecipes_views.add, name="addRecipe"),
     path('delete/', allrecipes_views.delete, name="delRecipe"),
+    # path('update/<int:pk>', allrecipes_views.Update.as_view(), name='updateRecipe'),
+    path('update/', allrecipes_views.update, name="updateRecipe"),
     path('myrecipes/', allrecipes_views.myrecipe, name="myRecipe"),
     path('profile/', user_views.profile, name='profile'),
 ]
