@@ -41,11 +41,12 @@
                                 <input type="hidden" name="id" value="{{ recipe.id }}">
                                 <input type="submit" value="X  Delete" class="btn btn-warning delete_recipe_btn">
                             </form>
-                            <form action="{% url 'updateRecipe' %}" method="POST">
+                            <a href="{% url 'updateRecipe' recipe.id %}" class="btn btn-info update_recipe_btn">Update</a>
+                            <!-- <form action="{% url 'updateRecipe' recipe.id %}" method="POST">
                                 {% csrf_token %}
                                 <input type="hidden" name="id" value="{{ recipe.id }}">
                                 <input type="submit" value="Update" class="btn btn-info update_recipe_btn">
-                            </form>
+                            </form> -->
                         </div>
                         <br>
                     {% endfor %}
