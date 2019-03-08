@@ -41,22 +41,30 @@ def delete(request):
 
         return redirect('myRecipe')
 
-def update(request):
+def update(request, id):
     if request.method == 'POST':
-        my_recipe = models.Recipe.objects.get(id=request.POST['id'], name=request.POST['name'], ingredients=request.POST['ingredients'], instructions=request.POST['instructions'])
-        id = my_recipe.id 
-        recname = my_recipe.name
+        my_recipe = models.Recipe.objects.get(id=id)
+        my_recipe.name = request.POST["name"]
+        my_recipe.ingredients = request.POST["ingredients"]
+        my_recipe.instructions = request.POST["instructions"]
+        my_recipe.save()
+        
+        return redirect('myRecipe')
+    
+    else:
+        my_recipe = models.Recipe.objects.get(id=id)
+        name = my_recipe.name
         ingredients = my_recipe.ingredients
         instructions = my_recipe.instructions
 
         context = {
-            'id': id,
-            'name': reccname,
+            'name': name,
             'ingredients': ingredients,
-            'instructions': instructions
+            'instructions': instructions,
+            'id': id
         }
-    
-    return render(request, 'allrecipes/updaterecipe.html', context=context)
+        print(id)
+        return render(request, 'allrecipes/updaterecipe.html', context=context)
 
 
 # class Update(UpdateView, LoginRequiredMixin):
