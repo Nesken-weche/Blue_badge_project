@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
+from django.core.paginator import Paginator
 from . import models
-# from django.views.generic import UpdateView
-# from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 # Create your views here.
 def all(request):
@@ -10,8 +10,13 @@ def all(request):
         all_recipes.save()
 
     recipes_list = models.Recipe.objects.all()
+    paginator= Paginator(recipes_list, 5)
+    page = request.GET.get('page')
+    contacts=paginator.get_page(page)
+
     context = {
-        'recipe_list': recipes_list,
+        'recipe_list': contacts,
+        'contacts': contacts,
     }
 
     return render(request, 'allrecipes/allrecipes.html', context=context)
@@ -28,8 +33,13 @@ def add(request):
 
 def myrecipe(request):
     my_own_recipe_list = models.Recipe.objects.filter(user=request.user)
+    paginator= Paginator(my_own_recipe_list, 5)
+    page = request.GET.get('page')
+    contacts=paginator.get_page(page)
+
     context = {
-        'my_recipes_list': my_own_recipe_list,
+        'my_recipes_list': contacts,
+        'contacts': contacts,
     }
 
     return render(request, 'users/profile.html', context=context)
@@ -65,15 +75,4 @@ def update(request, id):
         }
         print(id)
         return render(request, 'allrecipes/updaterecipe.html', context=context)
-
-
-# class Update(UpdateView, LoginRequiredMixin):
-#     def Update(request):
-#         if request.method == 'POST':
-#             model = models.Recipe.objects.get(id=request.POST['id'])
-#             fields = ['name', 'ingredients', 'instructions']
-
-#     def form_valid(self, form):
-#         form.instance.author = self.request.user
-#         return super().form_valid(form)
 

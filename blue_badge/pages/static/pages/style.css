@@ -37,8 +37,6 @@ body {
 }
 
 .container-fluid {
-    /* margin-left: 175px !important;
-    margin-right: 300px !important;  */
     background-color: var(--secondary-color);
     background-image: url('../img/crisp-paper-ruffles.png');
     min-height: 100%;
@@ -140,4 +138,14 @@ body {
 .recauthor {
     color: var(--primary-light);
     text-align: right;
+}
+
+.pagination {
+    text-align: center !important; 
+    width: 100%;
+}
+
+#allpag {
+    text-align: center !important; 
+    /* padding-left: 650px; */
 }
