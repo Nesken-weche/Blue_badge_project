@@ -124,6 +124,15 @@ body {
 }
 
 .update_profile_btn:hover {
-    background-color: rgb(177, 137, 166);
-    border-color: rgb(177, 137, 166);
+    background-color: rgb(177, 137, 166) !important;
+    border-color: rgb(177, 137, 166) !important;
+}
+
+.button-line {
+    text-align: center;
+    width:100%;
+}
+
+.line-button {
+    display: inline-block;
 }

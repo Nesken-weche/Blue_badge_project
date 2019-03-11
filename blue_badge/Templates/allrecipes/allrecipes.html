@@ -23,12 +23,14 @@
                         <h4>Instructions:</h4> {{ recipe.instructions }}
                     </p>
                     {% if recipe.user == request.user %}
-                    <form action="{% url 'delRecipe' %}" method="POST">
-                        {% csrf_token %}
-                        <input type="hidden" name="id" value="{{ recipe.id }}">
-                        <input type="submit" value="X  Delete" class="btn btn-warning delete_recipe_btn">
-                    </form>
-                    <a href="{% url 'updateRecipe' recipe.id %}" class="btn btn-info update_recipe_btn">Update</a>
+                    <div class='button-line'>
+                        <form action="{% url 'delRecipe' %}" method="POST" class='line-button'>
+                            {% csrf_token %}
+                            <input type="hidden" name="id" value="{{ recipe.id }}">
+                            <input type="submit" value="X  Delete" class="btn btn-warning delete_recipe_btn">
+                        </form>
+                        <a href="{% url 'updateRecipe' recipe.id %}" class="btn btn-info update_recipe_btn line-button">Update</a>
+                    </div>
                     
                     {% endif %}
                 </div>
