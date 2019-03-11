@@ -143,9 +143,15 @@ body {
 .pagination {
     text-align: center !important; 
     width: 100%;
+    color: var(--accent);
+}
+
+.pagination a {
+    color: var(--accent);
 }
 
 #allpag {
     text-align: center !important; 
     /* padding-left: 650px; */
 }
+
