@@ -17,7 +17,7 @@
         <br>
         <div class='row'>
             <div class='col-4'></div>
-            <a href="{% url 'profile' %}" class="btn btn-info edit_profile_btn col-4">Edit Profile</a>
+            <a href="{% url 'profile' %}" class="btn btn-info edit_profile_btn col-4"><i class="far fa-edit"></i> Edit Profile</a>
             <div class='col-4'></div>
         </div>
         <br>
@@ -40,9 +40,9 @@
                                 <form action="{% url 'delRecipe' %}" method="POST" class='line-button'>
                                     {% csrf_token %}
                                     <input type="hidden" name="id" value="{{ recipe.id }}">
-                                    <input type="submit" value="X  Delete" class="btn btn-warning delete_recipe_btn">
+                                    <input type="submit" value='X  Delete' class="btn btn-warning delete_recipe_btn">
                                 </form>
-                                <a href="{% url 'updateRecipe' recipe.id %}" class="btn btn-info update_recipe_btn line-button">Update</a>
+                                <a href="{% url 'updateRecipe' recipe.id %}" class="btn btn-info update_recipe_btn line-button"><i class="far fa-edit"></i> Update</a>
                             </div>
                         </div>
                         <br>

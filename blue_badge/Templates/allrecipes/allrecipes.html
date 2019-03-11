@@ -10,6 +10,7 @@
         </div>
         <div class='col-3'></div>
     </div>
+    <br>
     {% if recipe_list %}
         {% for recipe in recipe_list %}
             <div class='row'>
@@ -31,7 +32,7 @@
                         <input type="hidden" name="id" value="{{ recipe.id }}">
                         <input type="submit" value="X  Delete" class="btn btn-warning delete_recipe_btn">
                     </form>
-                    <a href="{% url 'updateRecipe' recipe.id %}" class="btn btn-info update_recipe_btn line-button">Update</a>
+                    <a href="{% url 'updateRecipe' recipe.id %}" class="btn btn-info update_recipe_btn line-button"><i class="far fa-edit"></i> Update</a>
                 </div>
                 {% endif %}
             </div>
