@@ -8,7 +8,7 @@ class Recipe(models.Model):
     ingredients = models.CharField(max_length=500)
     instructions = models.CharField(max_length=2000)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    publish = models.BooleanField(default=True)
+    publish = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
