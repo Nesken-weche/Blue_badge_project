@@ -10,35 +10,40 @@
         </div>
         <div class='col-3'></div>
     </div>
-    <!-- <div class = 'recipe_display'> -->
-        {% if recipe_list %}
-            {% for recipe in recipe_list %}
-                <div class='row'>
-                <div class='col-1'></div>
-                <div class='recipe_item stitched col-10'>
-                    <h2>{{ recipe.name }}</h2>
-                    <p>
-                        <h4>Ingredients:</h4> {{ recipe.ingredients }} 
-                        <br><br><br>
-                        <h4>Instructions:</h4> {{ recipe.instructions }}
-                    </p>
-                    {% if recipe.user == request.user %}
-                    <form action="{% url 'delRecipe' %}" method="POST">
+    <br>
+    {% if recipe_list %}
+        {% for recipe in recipe_list %}
+            <div class='row'>
+            <div class='col-1'></div>
+            <div class='recipe_item stitched col-10'>
+                <h2>{{ recipe.name }}</h2>
+                <p>
+                    <h4>Ingredients:</h4> {{ recipe.ingredients }} 
+                    <br><br><br>
+                    <h4>Instructions:</h4> {{ recipe.instructions }}
+                </p>
+                <small class='recauthor'>
+                    <p>Published by {{ recipe.user }} </p>
+                </small>
+                {% if recipe.user == request.user %}
+                <div class='button-line'>
+                    <form action="{% url 'delRecipe' %}" method="POST" class='line-button'>
                         {% csrf_token %}
                         <input type="hidden" name="id" value="{{ recipe.id }}">
                         <input type="submit" value="X  Delete" class="btn btn-warning delete_recipe_btn">
                     </form>
-                    {% endif %}
+                    <a href="{% url 'updateRecipe' recipe.id %}" class="btn btn-info update_recipe_btn line-button"><i class="far fa-edit"></i> Update</a>
                 </div>
-                <div class='col-1'></div>    
-                </div>
-                <br>
-            {% endfor %}
-        {% else %}
-            <br><br><br>
-            <h2>No Recipes have been created yet</h2>
-        {% endif %}
-    <!-- </div> -->
+                {% endif %}
+            </div>
+            <div class='col-1'></div>    
+            </div>
+            <br>
+        {% endfor %}
+    {% else %}
+        <br><br><br>
+        <h2>No Recipes have been created yet</h2>
+    {% endif %}
     {% if user.is_authenticated %}
         <div class='row'>
             <div class='col-4'></div>
@@ -47,11 +52,34 @@
             </div>
             <div class='col-4'></div>
         </div>
-        <br><br><br>
+        <br>
         </div>
     {% endif %}
+    <div class="pagination row" id=allpag>
+        <div class='col-4'></div>
+        <span class="step-links col-4">
+            {% if contacts.has_previous %}
+                <a href="?page=1"> &laquo; first </a>
+                 | 
+                <a href="?page={{ contacts.previous_page_number }}"> previous </a>
+                 | 
+            {% endif %}
+    
+            <span class="current">
+                 Page {{ contacts.number }} of {{ contacts.paginator.num_pages }} 
+            </span>
+    
+            {% if contacts.has_next %}
+                 | 
+                <a href="?page={{ contacts.next_page_number }}"> next </a>
+                 | 
+                <a href="?page={{ contacts.paginator.num_pages }}"> last &raquo; </a>
+            {% endif %}
+        </span>
+        <div class='col-4'></div>
+    </div>
 </div>
-<br>
+<br><br><br>
 
 
 {% endblock %}

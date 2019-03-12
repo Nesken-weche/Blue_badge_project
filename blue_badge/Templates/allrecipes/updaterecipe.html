@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br>
+<div class='row'></div> 
+    <div class='col-1'></div>
+    <div class='container-fluid col-10'>
+        <br>
+        <h1 class='AR_heading'>Update Recipe</h1>
+        <form class="update_form" action="{% url 'updateRecipe' id %}" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">Name of Recipe</label>
+                <input name="name" type="text" class="form-control" value= '{{name}}'>
+            </div>
+            <div class="form-group">
+                <label for="">Ingredients</label>
+                <input name="ingredients" type="text" class="form-control" value='{{ingredients}}'>
+            </div>
+            <div class="form-group">
+                <label for="">Instructions</label>
+                <input name="instructions" type="text" class="form-control" value='{{instructions}}'>
+            </div>
+            <div>
+                <input type="hidden" name="id" value={{id}}>
+            </div>
+            <!-- Uncomment below code when ready to make publishing option functional -->
+            <!-- <div class="form-group">
+                <label for="">Make public (optional)</label>
+                <input type="checkbox" class="publish">
+            </div> -->
+            <!-- <div class="form-group"> -->
+            <form action="{% url 'updateRecipe' id %}" method="POST">
+                <input type="submit" class="btn btn-success form_submit" value="Update">
+            </form>
+            <!-- </div> -->
+            <div>
+                <input type="hidden" name="user" value=request.user.id>
+            </div>
+            <br><br>
+        </form>        
+    </div>
+    <div class='col-1'></div>
+</div>
+<br><br><br><br>
+
+
+{% endblock %}

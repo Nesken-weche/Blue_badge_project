@@ -17,7 +17,7 @@
         <br>
         <div class='row'>
             <div class='col-4'></div>
-            <a href="{% url 'profile' %}" class="btn btn-info edit_profile_btn col-4">Edit Profile</a>
+            <a href="{% url 'profile' %}" class="btn btn-info edit_profile_btn col-4"><i class="far fa-edit"></i> Edit Profile</a>
             <div class='col-4'></div>
         </div>
         <br>
@@ -36,11 +36,14 @@
                                 <br>
                                 <h4>Instructions:</h4> {{ recipe.instructions }}
                             </p>
-                            <form action="{% url 'delRecipe' %}" method="POST">
-                                {% csrf_token %}
-                                <input type="hidden" name="id" value="{{ recipe.id }}">
-                                <input type="submit" value="X  Delete" class="btn btn-warning delete_recipe_btn">
-                            </form>
+                            <div class='button-line'>
+                                <form action="{% url 'delRecipe' %}" method="POST" class='line-button'>
+                                    {% csrf_token %}
+                                    <input type="hidden" name="id" value="{{ recipe.id }}">
+                                    <input type="submit" value='X  Delete' class="btn btn-warning delete_recipe_btn">
+                                </form>
+                                <a href="{% url 'updateRecipe' recipe.id %}" class="btn btn-info update_recipe_btn line-button"><i class="far fa-edit"></i> Update</a>
+                            </div>
                         </div>
                         <br>
                     {% endfor %}
@@ -58,7 +61,31 @@
                 <br><br>
         </div>
     </div>
+    <br>
     <div class='col-1'></div>
+    <div class="pagination row" id=allpag>
+        <div class='col-4'></div>
+        <span class="step-links col-4">
+            {% if contacts.has_previous %}
+                <a href="?page=1"> &laquo; first </a>
+                    | 
+                <a href="?page={{ contacts.previous_page_number }}"> previous </a>
+                    | 
+            {% endif %}
+    
+            <span class="current">
+                    Page {{ contacts.number }} of {{ contacts.paginator.num_pages }} 
+            </span>
+    
+            {% if contacts.has_next %}
+                    | 
+                <a href="?page={{ contacts.next_page_number }}"> next </a>
+                    | 
+                <a href="?page={{ contacts.paginator.num_pages }}"> last &raquo; </a>
+            {% endif %}
+        </span>
+        <div class='col-4'></div>
+    </div>
 </div>
 <br><br><br>
 {% endblock %}
