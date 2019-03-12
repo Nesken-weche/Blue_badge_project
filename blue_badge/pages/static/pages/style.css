@@ -2,11 +2,11 @@
     --primary-color: rgb(207, 192, 204);
     --primary-light: rgb(231, 220, 229);
     --primary-dark:rgb(189, 151, 179);
+    --primary-darker: rgb(165, 124, 154);
     --secondary-color: #FFD093;
     --secondary-dark: #FFB554;
     --accent: #5B75B0;
     --accent-2: #61646B;
-    --recipe_item_bg: {var(--accent), url('../img/crisp-paper-ruffles')};
 }
 
 .my_navbar {
@@ -37,8 +37,6 @@ body {
 }
 
 .container-fluid {
-    /* margin-left: 175px !important;
-    margin-right: 300px !important;  */
     background-color: var(--secondary-color);
     background-image: url('../img/crisp-paper-ruffles.png');
     min-height: 100%;
@@ -69,7 +67,7 @@ body {
     background-image: url('../img/crisp-paper-ruffles.png');
     border-radius: 80px;
     padding: 20px 25px 20px 35px;
-    color: var(--primary-light);
+    color: var(--primary-light) !important;
     /* border: 2px dotted transparent;
     box-shadow: inset 0px 0px 0px 2px var(--primary-light); */
 }
@@ -91,8 +89,8 @@ body {
 }
 
 .add_recipe_btn:hover {
-    background-color: rgb(177, 137, 166);
-    border-color: rgb(177, 137, 166);
+    background-color: var(--primary-darker);
+    border-color: var(--primary-darker);
 }
 
 .buffer {
@@ -113,8 +111,8 @@ body {
 }
 
 .edit_profile_btn:hover {
-    background-color: rgb(177, 137, 166);
-    border-color: rgb(177, 137, 166);
+    background-color: var(--primary-darker);
+    border-color: var(--primary-darker);
 }
 
 
@@ -123,9 +121,9 @@ body {
     border-color: var(--primary-dark);
 }
 
-.update_profile_btn:hover {
-    background-color: rgb(177, 137, 166) !important;
-    border-color: rgb(177, 137, 166) !important;
+.btn-info:hover {
+    background-color: var(--primary-darker) !important;
+    border-color: var(--primary-darker) !important;
 }
 
 .button-line {
@@ -136,3 +134,24 @@ body {
 .line-button {
     display: inline-block;
 }
+
+.recauthor {
+    color: var(--primary-light);
+    text-align: right;
+}
+
+.pagination {
+    text-align: center !important; 
+    width: 100%;
+    color: var(--accent);
+}
+
+.pagination a {
+    color: var(--accent);
+}
+
+#allpag {
+    text-align: center !important; 
+    /* padding-left: 650px; */
+}
+
