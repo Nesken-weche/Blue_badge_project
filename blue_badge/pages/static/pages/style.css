@@ -154,3 +154,9 @@ body {
     text-align: center !important; 
     /* padding-left: 650px; */
 }
+
+.publish_check {
+    width: 18px;
+    height: 18px;
+}
+
