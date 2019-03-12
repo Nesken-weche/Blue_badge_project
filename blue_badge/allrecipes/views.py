@@ -58,6 +58,10 @@ def update(request, id):
         my_recipe.name = request.POST["name"]
         my_recipe.ingredients = request.POST["ingredients"]
         my_recipe.instructions = request.POST["instructions"]
+        if 'publish' in request.POST:
+            my_recipe.publish = True
+        else:
+            my_recipe.publish = False
         my_recipe.save()
         
         return redirect('myRecipe')
@@ -67,12 +71,14 @@ def update(request, id):
         name = my_recipe.name
         ingredients = my_recipe.ingredients
         instructions = my_recipe.instructions
+        publish = my_recipe.publish
 
         context = {
             'name': name,
             'ingredients': ingredients,
             'instructions': instructions,
-            'id': id
+            'id': id,
+            'publish': publish
         }
         print(id)
         return render(request, 'allrecipes/updaterecipe.html', context=context)
