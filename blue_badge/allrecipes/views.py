@@ -9,7 +9,7 @@ def all(request):
         all_recipes = models.Recipe.objects.get(id=request.POST['id'])
         all_recipes.save()
 
-    recipes_list = models.Recipe.objects.all()
+    recipes_list = models.Recipe.objects.filter(publish=True)
     paginator= Paginator(recipes_list, 5)
     page = request.GET.get('page')
     contacts=paginator.get_page(page)
@@ -24,14 +24,12 @@ def all(request):
 
 def add(request):
     if request.method == "POST":
-        publish = False
-        if request.POST['publish'] == 'on':  
-            my_recipe = models.Recipe(name=request.POST["name"], ingredients=request.POST["ingredients"], instructions=request.POST["instructions"], user=request.user, publish=publish)
-            my_recipe.save()
-            return render(request, 'allrecipes/addrecipe.html')
-        else:
-            my_recipe.save()
-    return redirect('myRecipe')        
+        my_recipe = models.Recipe(name=request.POST["name"], ingredients=request.POST["ingredients"], instructions=request.POST["instructions"], user=request.user)
+        if 'publish' in request.POST:
+            my_recipe.publish = True
+        my_recipe.save()
+        return redirect('myRecipe')
+    return render(request, 'allrecipes/addrecipe.html')       
         
 
 def myrecipe(request):
