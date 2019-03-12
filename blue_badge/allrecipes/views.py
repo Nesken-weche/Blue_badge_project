@@ -19,12 +19,15 @@ def all(request):
 
 def add(request):
     if request.method == "POST":
-        my_recipe = models.Recipe(name=request.POST["name"], ingredients=request.POST["ingredients"], instructions=request.POST["instructions"], user=request.user)
-        my_recipe.save()
-
-        return redirect('myRecipe')
-
-    return render(request, 'allrecipes/addrecipe.html')
+        publish = False
+        if request.POST['publish'] == 'on':  
+            my_recipe = models.Recipe(name=request.POST["name"], ingredients=request.POST["ingredients"], instructions=request.POST["instructions"], user=request.user, publish=publish)
+            my_recipe.save()
+            return render(request, 'allrecipes/addrecipe.html')
+        else:
+            my_recipe.save()
+    return redirect('myRecipe')        
+        
 
 def myrecipe(request):
     my_own_recipe_list = models.Recipe.objects.filter(user=request.user)
