@@ -24,12 +24,10 @@
             <div>
                 <input type="hidden" name="id" value={{id}}>
             </div>
-            <!-- Uncomment below code when ready to make publishing option functional -->
-            <!-- <div class="form-group">
-                <label for="">Make public (optional)</label>
-                <input type="checkbox" class="publish">
-            </div> -->
-            <!-- <div class="form-group"> -->
+            <div class="form-group publish_q">
+                <label for="publish">Make recipe public (optional) </label>
+                <input name="publish" type="checkbox" class="publish_check" value=True>
+            </div>
             <form action="{% url 'updateRecipe' id %}" method="POST">
                 <input type="submit" class="btn btn-success form_submit" value="Update">
             </form>
