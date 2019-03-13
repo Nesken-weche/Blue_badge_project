@@ -23,7 +23,7 @@
                     <h4>Instructions:</h4> {{ recipe.instructions }}
                 </p>
                 <small class='recauthor'>
-                    <p>Published by {{ recipe.user }} </p>
+                    <a href="{% url 'userRecipes' recipe.user.username %}">Published by {{ recipe.user }} </a>
                 </small>
                 {% if recipe.user == request.user %}
                 <div class='button-line'>
