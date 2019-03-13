@@ -135,7 +135,7 @@ body {
     display: inline-block;
 }
 
-.recauthor {
+.recauthor a {
     color: var(--primary-light);
     text-align: right;
 }
