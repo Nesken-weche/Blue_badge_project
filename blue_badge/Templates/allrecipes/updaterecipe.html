@@ -26,7 +26,11 @@
             </div>
             <div class="form-group publish_q">
                 <label for="publish">Make recipe public (optional) </label>
-                <input name="publish" type="checkbox" class="publish_check" value=True>
+                {% if publish == False %}
+                    <input name="publish" type="checkbox" class="publish_check" value=True>
+                {% elif publish == True %}
+                    <input name="publish" type="checkbox" class="publish_check" value=True checked>
+                {% endif %}
             </div>
             <form action="{% url 'updateRecipe' id %}" method="POST">
                 <input type="submit" class="btn btn-success form_submit" value="Update">
