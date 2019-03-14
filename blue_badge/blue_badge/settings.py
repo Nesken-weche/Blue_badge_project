@@ -31,9 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'pages.apps.PagesConfig',
     'users.apps.UsersConfig',
-    'crispy_forms', 
+    'pages.apps.PagesConfig',
     'allrecipes.apps.AllrecipesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -41,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms', 
 ]
 
 MIDDLEWARE = [

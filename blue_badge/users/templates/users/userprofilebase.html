@@ -7,31 +7,25 @@
         <br>
         <div class="media row">
             <div class='col-3'></div>
-            <img class="rounded-circle account-img col-3" src="{{ user.profile.image.url }}"><br>
+            <img class="rounded-circle account-img col-3" src="{{ user1.profile.image.url }}"><br>
             <div class="media-body col-3">
-                <h2 class="account-heading">{{ user.username }}</h2>
-                <p class="text-secondary">{{ user.email }}</p>
+                <h2 class="account-heading">{{ user1.username }}</h2>
+                <p class="text-secondary">{{ user1.email }}</p>
                 <p class="bio-text">About me: <br>
-                    {{ user.profile.bio }}
+                    {{ user1.profile.bio }}
                 </p>
             </div>
             <div class='col-3'></div>
-        </div>
-        <br>
-        <div class='row'>
-            <div class='col-4'></div>
-            <a href="{% url 'profile' %}" class="btn btn-info edit_profile_btn col-4"><i class="far fa-edit"></i> Edit Profile</a>
-            <div class='col-4'></div>
         </div>
         <br>
         <br>
         <div class="container">
             <br>
             <div class='AR_heading'>
-                <h1> My Recipes </h1>
+                <h1> {{ user1.username }}'s Recipes </h1>
             </div>
-                {% if my_recipes_list %}
-                    {% for recipe in my_recipes_list %}
+                {% if user_recipes %}
+                    {% for recipe in user_recipes %}
                         <div class='recipe_item stitched'>
                             <h3>{{ recipe.name }}</h3>
                             <p>
@@ -39,14 +33,6 @@
                                 <br>
                                 <h4>Instructions:</h4> {{ recipe.instructions }}
                             </p>
-                            <div class='button-line'>
-                                <form action="{% url 'delRecipe' %}" method="POST" class='line-button'>
-                                    {% csrf_token %}
-                                    <input type="hidden" name="id" value="{{ recipe.id }}">
-                                    <input type="submit" value='X  Delete' class="btn btn-warning delete_recipe_btn">
-                                </form>
-                                <a href="{% url 'updateRecipe' recipe.id %}" class="btn btn-info update_recipe_btn line-button"><i class="far fa-edit"></i> Update</a>
-                            </div>
                         </div>
                         <br>
                     {% endfor %}
@@ -54,14 +40,6 @@
                     <br><br><br>
                     <h2>No Recipes have been created yet</h2>
                 {% endif %}
-        </div>
-        <div class='row'>
-                <div class='col-4'></div>
-                <div class="addrecipebutton col-4">
-                <a href="{% url 'addRecipe' %}" class="btn btn-primary add_recipe_btn"><i class="fas fa-plus"></i>  Add Recipe</a>
-                </div>
-                <div class='col-4'></div>
-                <br><br>
         </div>
     </div>
     <br>

@@ -68,6 +68,8 @@ def update(request, id):
     
     else:
         my_recipe = models.Recipe.objects.get(id=id)
+        if my_recipe.user != request.user:
+            return redirect('homePage')
         name = my_recipe.name
         ingredients = my_recipe.ingredients
         instructions = my_recipe.instructions
