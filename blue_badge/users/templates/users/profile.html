@@ -30,30 +30,54 @@
             <div class='AR_heading'>
                 <h1> My Recipes </h1>
             </div>
-                {% if my_recipes_list %}
-                    {% for recipe in my_recipes_list %}
-                        <div class='recipe_item stitched'>
-                            <h3>{{ recipe.name }}</h3>
-                            <p>
-                                <h4>Ingredients:</h4> {{ recipe.ingredients }} <br>
-                                <br>
-                                <h4>Instructions:</h4> {{ recipe.instructions }}
-                            </p>
-                            <div class='button-line'>
-                                <form action="{% url 'delRecipe' %}" method="POST" class='line-button'>
-                                    {% csrf_token %}
-                                    <input type="hidden" name="id" value="{{ recipe.id }}">
-                                    <input type="submit" value='X  Delete' class="btn btn-warning delete_recipe_btn">
-                                </form>
-                                <a href="{% url 'updateRecipe' recipe.id %}" class="btn btn-info update_recipe_btn line-button"><i class="far fa-edit"></i> Update</a>
-                            </div>
+            <div class="pagination row" id=allpag>
+                <div class='col-4'></div>
+                <span class="step-links col-4">
+                    {% if contacts.has_previous %}
+                        <a href="?page=1"> &laquo; first </a>
+                            | 
+                        <a href="?page={{ contacts.previous_page_number }}"> previous </a>
+                            | 
+                    {% endif %}
+            
+                    <span class="current">
+                            Page {{ contacts.number }} of {{ contacts.paginator.num_pages }} 
+                    </span>
+            
+                    {% if contacts.has_next %}
+                            | 
+                        <a href="?page={{ contacts.next_page_number }}"> next </a>
+                            | 
+                        <a href="?page={{ contacts.paginator.num_pages }}"> last &raquo; </a>
+                    {% endif %}
+                </span>
+                <div class='col-4'></div>
+            </div>
+            <br>
+            {% if my_recipes_list %}
+                {% for recipe in my_recipes_list %}
+                    <div class='recipe_item stitched'>
+                        <h3>{{ recipe.name }}</h3>
+                        <p>
+                            <h4>Ingredients:</h4> {{ recipe.ingredients }} <br>
+                            <br>
+                            <h4>Instructions:</h4> {{ recipe.instructions }}
+                        </p>
+                        <div class='button-line'>
+                            <form action="{% url 'delRecipe' %}" method="POST" class='line-button'>
+                                {% csrf_token %}
+                                <input type="hidden" name="id" value="{{ recipe.id }}">
+                                <input type="submit" value='X  Delete' class="btn btn-warning delete_recipe_btn">
+                            </form>
+                            <a href="{% url 'updateRecipe' recipe.id %}" class="btn btn-info update_recipe_btn line-button"><i class="far fa-edit"></i> Update</a>
                         </div>
-                        <br>
-                    {% endfor %}
-                {% else %}
-                    <br><br><br>
-                    <h2>No Recipes have been created yet</h2>
-                {% endif %}
+                    </div>
+                    <br>
+                {% endfor %}
+            {% else %}
+                <br><br><br>
+                <h2>No Recipes have been created yet</h2>
+            {% endif %}
         </div>
         <div class='row'>
                 <div class='col-4'></div>
