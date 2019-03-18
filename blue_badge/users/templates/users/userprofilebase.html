@@ -11,6 +11,9 @@
             <div class="media-body col-3">
                 <h2 class="account-heading">{{ user1.username }}</h2>
                 <p class="text-secondary">{{ user1.email }}</p>
+                <p class="bio-text">About me: <br>
+                    {{ user1.profile.bio }}
+                </p>
             </div>
             <div class='col-3'></div>
         </div>
