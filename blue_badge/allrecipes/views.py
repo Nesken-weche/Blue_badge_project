@@ -14,6 +14,9 @@ def all(request):
     page = request.GET.get('page')
     contacts=paginator.get_page(page)
 
+    for r in recipes_list:
+        print(r.image)
+
     context = {
         'recipe_list': contacts,
         'contacts': contacts,
@@ -22,12 +25,14 @@ def all(request):
     return render(request, 'allrecipes/allrecipes.html', context=context)
 
 
-def add(request, **kwargs):
+def add(request):
     if request.method == "POST":
-        my_recipe = models.Recipe(name=request.POST["name"], ingredients=request.POST["ingredients"], instructions=request.POST["instructions"], user=request.user, image=request.FILES)
+        image = request.FILES['upload']
+        print(image)
+        my_recipe = models.Recipe(name=request.POST["name"], ingredients=request.POST["ingredients"], instructions=request.POST["instructions"], user=request.user, image=request.FILES['upload'])
         if 'publish' in request.POST:
             my_recipe.publish = True
-        my_recipe.save(**kwargs)
+        my_recipe.save()
         return redirect('myRecipe')
     return render(request, 'allrecipes/addrecipe.html')       
         
@@ -58,6 +63,8 @@ def update(request, id):
         my_recipe.name = request.POST["name"]
         my_recipe.ingredients = request.POST["ingredients"]
         my_recipe.instructions = request.POST["instructions"]
+        if 'upload' in request.FILES:
+            my_recipe.image = request.FILES['upload']
         if 'publish' in request.POST:
             my_recipe.publish = True
         else:
@@ -73,12 +80,14 @@ def update(request, id):
         name = my_recipe.name
         ingredients = my_recipe.ingredients
         instructions = my_recipe.instructions
+        image = my_recipe.image
         publish = my_recipe.publish
 
         context = {
             'name': name,
             'ingredients': ingredients,
             'instructions': instructions,
+            'image': image,
             'id': id,
             'publish': publish
         }

@@ -6,7 +6,7 @@ from PIL import Image
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(default='default.jpg', upload_to='profile_pics')
+    image = models.ImageField(default='default.gif', upload_to='profile_pics')
     bio = models.TextField(max_length=600, default="", blank=True)
 
     def __str__(self):
@@ -16,6 +16,8 @@ class Profile(models.Model):
         super().save(**kwargs)
 
         img = Image.open(self.image.path)
+
+        print(self.image)
 
         if img.height > 300 or img.width > 300:
             output_size = (300, 300)

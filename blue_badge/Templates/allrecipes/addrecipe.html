@@ -21,13 +21,13 @@
                     <label for="instructions">Instructions</label>
                     <input name="instructions" type="text" class="form-control" placeholder="ex: Mix in large bowl, pour into pan, bake for 1 hr at 450 degrees">
                 </div>
+                <div class="media row">
+                    <input type='file' name='upload'>
+                </div>
                 <div class="form-group">
                     <label for="publish">Make recipe public (optional) </label>
                     <input name="publish" type="checkbox" class="publish_check" value=True>
                 </div>
-                <div class="media row">
-                    <div class='col-3'></div>
-                    <button class="rounded-circle account-img col-3" src="{{ 'default.gif.url' }}">Upload</button>
                 <div class="form-group">
                     <input type="submit" class="btn btn-success form_submit">
                 </div>
