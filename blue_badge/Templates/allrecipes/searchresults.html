@@ -6,41 +6,16 @@
     <div class='row'>
         <div class='col-3'></div>
         <div class='AR_heading col-6'>
-            <h1> All recipes </h1>
+            <h1> Search Recipes </h1>
         </div>
         <div class='col-3'></div>
     </div>
     <br>
-    <div class="pagination row" id=allpag>
-        <div class='col-4'></div>
-        <span class="step-links col-4">
-            {% if contacts.has_previous %}
-                <a href="?page=1"> &laquo; first </a>
-                    | 
-                <a href="?page={{ contacts.previous_page_number }}"> previous </a>
-                    | 
-            {% endif %}
-    
-            <span class="current">
-                    Page {{ contacts.number }} of {{ contacts.paginator.num_pages }} 
-            </span>
-    
-            {% if contacts.has_next %}
-                    | 
-                <a href="?page={{ contacts.next_page_number }}"> next </a>
-                    | 
-                <a href="?page={{ contacts.paginator.num_pages }}"> last &raquo; </a>
-            {% endif %}
-        </span>
-        <div class='col-4'></div>
-    </div>
-    <br>
-    {% if recipe_list %}
-        {% for recipe in recipe_list %}
+    {% if querset %}
+        {% for recipe in querset %}
             <div class='row'>
             <div class='col-1'></div>
             <div class='recipe_item stitched col-10'>
-                <img src="{{ recipe.image.url }}">
                 <h2>{{ recipe.name }}</h2>
                 <p>
                     <h4>Ingredients:</h4> {{ recipe.ingredients }} 
@@ -67,18 +42,7 @@
         {% endfor %}
     {% else %}
         <br><br><br>
-        <h2>No Recipes have been created yet</h2>
-    {% endif %}
-    {% if user.is_authenticated %}
-        <div class='row'>
-            <div class='col-4'></div>
-            <div class="addrecipebutton col-4">
-            <a href="{% url 'addRecipe' %}" class="btn btn-primary add_recipe_btn"><i class="fas fa-plus"></i>  Add Recipe</a>
-            </div>
-            <div class='col-4'></div>
-        </div>
-        <br>
-        </div>
+        <h2>Sorry, but it seems no recipes contain your search term(s)!</h2>
     {% endif %}
     <div class="pagination row" id=allpag>
         <div class='col-4'></div>

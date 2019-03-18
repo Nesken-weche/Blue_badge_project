@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
+from django.contrib.postgres.search import SearchVector, SearchRank, SearchQuery
 from . import models
 
 
@@ -24,7 +25,6 @@ def all(request):
 
     return render(request, 'allrecipes/allrecipes.html', context=context)
 
-
 def add(request):
     if request.method == "POST":
         image = request.FILES['upload']
@@ -36,7 +36,6 @@ def add(request):
         return redirect('myRecipe')
     return render(request, 'allrecipes/addrecipe.html')       
         
-
 def myrecipe(request):
     my_own_recipe_list = models.Recipe.objects.filter(user=request.user)
     paginator= Paginator(my_own_recipe_list, 5)
@@ -93,4 +92,24 @@ def update(request, id):
         }
         print(id)
         return render(request, 'allrecipes/updaterecipe.html', context=context)
+
+def querysearch(request):
+    querset = models.Recipe.objects.filter(publish=True)
+    keywords = request.GET.get('search')
+
+    if request.method == "POST":
+        query = SearchQuery(keywords)
+        vector = SearchVector('name', weight='A') + SearchVector('ingredients', weight='B') + SearchVector('instructions', weight='C')
+        querset = querset.annotate(search=vector).filter(search=query)
+        querset = querset.annotate(rank=SearchRank(vector, query))
+
+    paginator= Paginator(querset, 5)
+    page = request.GET.get('page')
+    contacts=paginator.get_page(page)
+    
+    context = {
+        'querset': querset,
+        'contacts': contacts,
+    }
+    return render(request, 'allrecipes/searchresults.html', context=context)
 

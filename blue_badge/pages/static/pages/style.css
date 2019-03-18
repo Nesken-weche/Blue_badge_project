@@ -22,6 +22,21 @@
     color: var(--accent)
 }
 
+.search-btn {
+    background-color: var(--accent);
+    color: var(--primary-light);
+    border-radius: 10px;
+}
+
+.searchbar {
+    margin-left: 50px;
+}
+
+.searchbox {
+    height: 40px;
+    border-radius: 10px;
+}
+
 body {
     background-image: url('../img/crisp-paper-ruffles.png');
     background-color: var(--secondary-dark);
