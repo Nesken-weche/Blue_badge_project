@@ -22,12 +22,12 @@ def all(request):
     return render(request, 'allrecipes/allrecipes.html', context=context)
 
 
-def add(request):
+def add(request, **kwargs):
     if request.method == "POST":
-        my_recipe = models.Recipe(name=request.POST["name"], ingredients=request.POST["ingredients"], instructions=request.POST["instructions"], user=request.user)
+        my_recipe = models.Recipe(name=request.POST["name"], ingredients=request.POST["ingredients"], instructions=request.POST["instructions"], user=request.user, image=request.FILES)
         if 'publish' in request.POST:
             my_recipe.publish = True
-        my_recipe.save()
+        my_recipe.save(**kwargs)
         return redirect('myRecipe')
     return render(request, 'allrecipes/addrecipe.html')       
         
