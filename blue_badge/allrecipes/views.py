@@ -99,11 +99,10 @@ def update(request, id):
         print(id)
         return render(request, 'allrecipes/updaterecipe.html', context=context)
 
-def querysearch(request):
+def querysearch_defunct(request):
     querset = models.Recipe.objects.filter(publish=True)
     keywords = request.GET.get('search')
     if keywords:
-
         search  = Recipe.objects.filter(Q(name=keywords) | Q(instructions=keywords) | Q(ingredients=keywords))
     else:
         search = Recipe.objects.filter()
