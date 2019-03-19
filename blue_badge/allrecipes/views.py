@@ -27,9 +27,12 @@ def all(request):
 
 def add(request):
     if request.method == "POST":
-        image = request.FILES['upload']
-        print(image)
-        my_recipe = models.Recipe(name=request.POST["name"], ingredients=request.POST["ingredients"], instructions=request.POST["instructions"], user=request.user, image=request.FILES['upload'])
+        if request.FILES:
+            image = request.FILES['upload']
+            print(image)
+            my_recipe = models.Recipe(name=request.POST["name"], ingredients=request.POST["ingredients"], instructions=request.POST["instructions"], user=request.user, image=request.FILES['upload'])
+        my_recipe = models.Recipe(name=request.POST["name"], ingredients=request.POST["ingredients"], instructions=request.POST["instructions"], user=request.user)
+        
         if 'publish' in request.POST:
             my_recipe.publish = True
         my_recipe.save()
@@ -62,6 +65,7 @@ def update(request, id):
         my_recipe.name = request.POST["name"]
         my_recipe.ingredients = request.POST["ingredients"]
         my_recipe.instructions = request.POST["instructions"]
+        # my_recipe.image = request.FILES["image"]
         if 'upload' in request.FILES:
             my_recipe.image = request.FILES['upload']
         if 'publish' in request.POST:
