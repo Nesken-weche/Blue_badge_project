@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 from django.contrib.postgres.search import SearchVector, SearchRank, SearchQuery
 from . import models
+from django.db.models import Q
+from .models import Recipe
 
 
 # Create your views here.
@@ -96,20 +98,26 @@ def update(request, id):
 def querysearch(request):
     querset = models.Recipe.objects.filter(publish=True)
     keywords = request.GET.get('search')
+    if keywords:
 
-    if request.method == "POST":
-        query = SearchQuery(keywords)
-        vector = SearchVector('name', weight='A') + SearchVector('ingredients', weight='B') + SearchVector('instructions', weight='C')
-        querset = querset.annotate(search=vector).filter(search=query)
-        querset = querset.annotate(rank=SearchRank(vector, query))
+        search  = Recipe.objects.filter(Q(name=keywords) | Q(instructions=keywords) | Q(ingredients=keywords))
+    else:
+        search = Recipe.objects.filter()
 
-    paginator= Paginator(querset, 5)
+    # if request.method == "POST":
+    #     query = SearchQuery(keywords)
+    #     vector = SearchVector('name', weight='A') + SearchVector('ingredients', weight='B') + SearchVector('instructions', weight='C')
+    #     querset = querset.annotate(search=vector).filter(search=query)
+    #     querset = querset.annotate(rank=SearchRank(vector, query))
+
+    paginator= Paginator(search, 5)
     page = request.GET.get('page')
     contacts=paginator.get_page(page)
     
     context = {
         'querset': querset,
-        'contacts': contacts,
+        # 'contacts': contacts,
+        'keywords': keywords,
+        'search': search,
     }
     return render(request, 'allrecipes/searchresults.html', context=context)
-
