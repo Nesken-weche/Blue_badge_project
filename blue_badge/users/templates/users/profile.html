@@ -57,8 +57,9 @@
             {% if my_recipes_list %}
                 {% for recipe in my_recipes_list %}
                     <div class='recipe_item stitched'>
-                        <h3>{{ recipe.name }}</h3>
-                        <p>
+                        <img src="{{ recipe.image.url }}" class="recpic">
+                        <h3 class="recname">{{ recipe.name }}</h3>
+                        <p class="recinfo"> 
                             <h4>Ingredients:</h4> {{ recipe.ingredients }} <br>
                             <br>
                             <h4>Instructions:</h4> {{ recipe.instructions }}
