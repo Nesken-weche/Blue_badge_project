@@ -1,10 +1,11 @@
 <div class="my_navbar navbar navbar-expand-md">
     <a href="{% url 'homePage' %}" class="navbar-brand my_brand"><h1>Recipes</h1></a>
     <!--searchbar-->
-    <form class="searchbar" action="{% url 'searchRecipes' %}">
-        {% csrf_token %}
-        <input type='text' name="search" placeholder="Search" class='searchbox'>
-        <input type='submit' for="search" href="{% url 'searchRecipes' %}" class='btn search-btn' method='POST'>
+    <form method="GET" action="{% url 'searchRecipes' %}">
+        <input name='search' value="{{request.GET.search}}" placeholder="search..">
+        <button class="btn btn-success" type="submit">
+            Search
+        </button>
     </form>
 
     <!--Navbar links-->

@@ -11,12 +11,12 @@
         <div class='col-3'></div>
     </div>
     <br>
-    {% if querset %}
-        {% for recipe in querset %}
+    {% if search %}
+        {% for recipe in search %}
             <div class='row'>
             <div class='col-1'></div>
             <div class='recipe_item stitched col-10'>
-                <h2>{{ recipe.name }}</h2>
+                <h2>Name:</h2> {{ recipe.name }}
                 <p>
                     <h4>Ingredients:</h4> {{ recipe.ingredients }} 
                     <br><br><br>
@@ -50,7 +50,7 @@
             {% if contacts.has_previous %}
                 <a href="?page=1"> &laquo; first </a>
                  | 
-                <a href="?page={{ contacts.previous_page_number }}"> previous </a>
+                <a href="?page={{ contacts.previous_page_number }}{% if keywords %}&search={{keywords}}{% endif %}"> previous </a>
                  | 
             {% endif %}
     
