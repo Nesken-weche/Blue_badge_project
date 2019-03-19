@@ -97,23 +97,52 @@ def update(request, id):
         print(id)
         return render(request, 'allrecipes/updaterecipe.html', context=context)
 
-def querysearch(request):
+def querysearch_defunct(request):
     querset = models.Recipe.objects.filter(publish=True)
     keywords = request.GET.get('search')
 
-    if request.method == "POST":
-        query = SearchQuery(keywords)
-        vector = SearchVector('name', weight='A') + SearchVector('ingredients', weight='B') + SearchVector('instructions', weight='C')
-        querset = querset.annotate(search=vector).filter(search=query)
-        querset = querset.annotate(rank=SearchRank(vector, query))
+    results = []
 
-    paginator= Paginator(querset, 5)
-    page = request.GET.get('page')
-    contacts=paginator.get_page(page)
+    for recipe in querset:
+        nam = recipe.name.split(' ')
+        ing = recipe.ingredients.split(' ')
+        inst = recipe.instructions.split(' ')
+        key = keywords.split(' ')
+        for word in nam:
+            word = word.lower()
+            if key == word:
+                results.append(recipe)
+                break
+        for word in ing:
+            word = word.lower()
+            if key == word:
+                results.append(recipe)
+                break
+        for word in inst:
+            wotd = word.lower()
+            key = key.lower()
+            if key == word:
+                results.append(recipe)
+                break
+    print(len(results))
+
+    # querset = querset.annotate(search=vector).filter(search=keywords)
+    
+
+    # if keywords:
+    #     query = SearchQuery(keywords)
+    #     vector = SearchVector('name', weight='A') + SearchVector('ingredients', weight='B') + SearchVector('instructions', weight='C')
+    #     querset = querset.annotate(search=vector).filter(search=query)
+    #     querset = querset.annotate(rank=SearchRank(vector, query))
+
+
+    # paginator= Paginator(querset, 5)
+    # page = request.GET.get('page')
+    # contacts=paginator.get_page(page)
     
     context = {
         'querset': querset,
-        'contacts': contacts,
+        # 'contacts': contacts,
     }
     return render(request, 'allrecipes/searchresults.html', context=context)
 

@@ -4,7 +4,11 @@
     <form class="searchbar" action="{% url 'searchRecipes' %}">
         {% csrf_token %}
         <input type='text' name="search" placeholder="Search" class='searchbox'>
-        <input type='submit' for="search" href="{% url 'searchRecipes' %}" class='btn search-btn' method='POST'>
+        <input type='submit' for="search" href="{% url 'searchRecipes' %}" class='btn search-btn' method='POST' allow_redirects='False'>
+    </form>
+    <form type="get" action="{% url 'searchRecipes' %}" style="margin: 0">
+            <input  id="search_box" type="text" name="search_box"  placeholder="Search..." >
+            <button id="search_submit" type="submit" >Submit</button>
     </form>
 
     <!--Navbar links-->
