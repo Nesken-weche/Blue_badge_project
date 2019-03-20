@@ -103,24 +103,26 @@ def querysearch(request):
     querset = models.Recipe.objects.filter(publish=True)
     keywords = request.GET.get('search')
     if keywords:
-
         search  = querset.filter(Q(name__icontains=keywords) | Q(instructions__icontains=keywords) | Q(ingredients__icontains=keywords))
     else:
         search = querset.filter()
 
-    # if request.method == "POST":
-    #     query = SearchQuery(keywords)
-    #     vector = SearchVector('name', weight='A') + SearchVector('ingredients', weight='B') + SearchVector('instructions', weight='C')
-    #     querset = querset.annotate(search=vector).filter(search=query)
-    #     querset = querset.annotate(rank=SearchRank(vector, query))
+    # if keywords: 
+    #     squery = SearchQuery(keywords)
+    #     svector = SearchVector('name', weight='A') + SearchVector('ingredients', weight='B') + SearchVector('instructions', weight='C')
+    #     # querset = querset.annotate(search=svector)
+    #     # querset = querset.filter(search=squery)
+    #     querset = querset.annotate(search=svector).filter(search=squery)
+    #     # querset = querset.annotate(rank=SearchRank(svector, squery)).order_by('-rank')
 
-    paginator= Paginator(search, 5)
+
+    paginator= Paginator(querset, 5)
     page = request.GET.get('page')
     contacts=paginator.get_page(page)
     
     context = {
         'querset': querset,
-        # 'contacts': contacts,
+        'contacts': contacts,
         'keywords': keywords,
         'search': search,
     }

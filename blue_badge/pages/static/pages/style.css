@@ -192,3 +192,6 @@ body {
     height: 18px;
 }
 
+.no_results {
+    text-align: center;
+}
