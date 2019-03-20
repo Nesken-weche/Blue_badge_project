@@ -116,7 +116,7 @@ def querysearch(request):
     #     # querset = querset.annotate(rank=SearchRank(svector, squery)).order_by('-rank')
 
 
-    paginator= Paginator(querset, 5)
+    paginator= Paginator(search, 5)
     page = request.GET.get('page')
     contacts=paginator.get_page(page)
     
