@@ -10,7 +10,7 @@ class Recipe(models.Model):
     instructions = models.CharField(max_length=2000)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     publish = models.BooleanField(default=False)
-    image = models.ImageField(default='default.gif', upload_to='post_pics')
+    image = models.ImageField(default='default.jpg', upload_to='post_pics')
 
     def __str__(self):
         return self.name
