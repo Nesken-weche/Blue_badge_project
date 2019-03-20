@@ -67,13 +67,17 @@ def update(request, id):
         my_recipe.name = request.POST["name"]
         my_recipe.ingredients = request.POST["ingredients"]
         my_recipe.instructions = request.POST["instructions"]
-        # my_recipe.image = request.FILES["image"]
-        if 'upload' in request.FILES:
+        # my_recipe.image = request.FILES["upload"]
+        if request.POST:
             my_recipe.image = request.FILES['upload']
+        else:
+            print('not hitting')
+
         if 'publish' in request.POST:
             my_recipe.publish = True
         else:
             my_recipe.publish = False
+
         my_recipe.save()
         
         return redirect('myRecipe')
@@ -96,7 +100,7 @@ def update(request, id):
             'id': id,
             'publish': publish
         }
-        print(id)
+
         return render(request, 'allrecipes/updaterecipe.html', context=context)
 
 def querysearch(request):
@@ -110,20 +114,17 @@ def querysearch(request):
     # if keywords: 
     #     squery = SearchQuery(keywords)
     #     svector = SearchVector('name', weight='A') + SearchVector('ingredients', weight='B') + SearchVector('instructions', weight='C')
-    #     # querset = querset.annotate(search=svector)
-    #     # querset = querset.filter(search=squery)
     #     querset = querset.annotate(search=svector).filter(search=squery)
     #     # querset = querset.annotate(rank=SearchRank(svector, squery)).order_by('-rank')
 
-
-    paginator= Paginator(search, 5)
-    page = request.GET.get('page')
-    contacts=paginator.get_page(page)
+    # paginator= Paginator(search, 5)
+    # page = request.GET.get('page')
+    # contacts=paginator.get_page(page)
     
     context = {
         'querset': querset,
-        'contacts': contacts,
         'keywords': keywords,
         'search': search,
+        # 'contacts': contacts,
     }
     return render(request, 'allrecipes/searchresults.html', context=context)
