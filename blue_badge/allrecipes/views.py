@@ -99,13 +99,14 @@ def update(request, id):
         print(id)
         return render(request, 'allrecipes/updaterecipe.html', context=context)
 
-def querysearch_defunct(request):
+def querysearch(request):
     querset = models.Recipe.objects.filter(publish=True)
     keywords = request.GET.get('search')
     if keywords:
-        search  = Recipe.objects.filter(Q(name=keywords) | Q(instructions=keywords) | Q(ingredients=keywords))
+
+        search  = querset.filter(Q(name__icontains=keywords) | Q(instructions__icontains=keywords) | Q(ingredients__icontains=keywords))
     else:
-        search = Recipe.objects.filter()
+        search = querset.filter()
 
     # if request.method == "POST":
     #     query = SearchQuery(keywords)
