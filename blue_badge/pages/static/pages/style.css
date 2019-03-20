@@ -58,6 +58,7 @@ body {
     background-color: var(--secondary-color);
     background-image: url('../img/crisp-paper-ruffles.png');
     min-height: 100%;
+    border-radius: 10px;
 }
 
 #my_footer {
@@ -96,13 +97,17 @@ body {
 .recpic {
     border-radius: 80px 5px 5px 5px;
     margin-right: 10px;
-    text-align: right;
+    /* text-align: right; */
     display: inline-block;
 }
 
 .recname {
     display: inline-block;
     margin-right: 50px;
+}
+
+.recinfo {
+    margin-left: 210px;
 }
 
 .addrecipebutton {
