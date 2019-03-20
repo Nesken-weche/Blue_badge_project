@@ -65,8 +65,11 @@
             <br>
         {% endfor %}
     {% else %}
-        <br><br><br>
-        <h2>Sorry, but it seems no recipes contain your search term(s)!</h2>
+        <br><br><br><br><br>
+        <div class="no_results">
+            <h2>Sorry, but it seems no recipes contain your search term(s)!</h2>
+            <br><br><br><br><br><br><br>
+        </div>
     {% endif %}
     <div class="pagination row" id=allpag>
         <div class='col-4'></div>

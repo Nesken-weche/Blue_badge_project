@@ -99,27 +99,30 @@ def update(request, id):
         print(id)
         return render(request, 'allrecipes/updaterecipe.html', context=context)
 
-def querysearch_defunct(request):
-    querset = models.Recipe.objects.filter(publish=True)
-    keywords = request.GET.get('search')
+def querysearch(request):
+    querset = Recipe.objects.filter(publish=True)
+    keywords = request.GET.get('searchbar')
     if keywords:
-        search  = Recipe.objects.filter(Q(name=keywords) | Q(instructions=keywords) | Q(ingredients=keywords))
+        search = querset.filter(Q(name__icontains=keywords) | Q(instructions__icontains=keywords) | Q(ingredients__icontains=keywords))
     else:
-        search = Recipe.objects.filter()
+        search = Recipe.objects.filter(publish=True)
 
-    # if request.method == "POST":
-    #     query = SearchQuery(keywords)
-    #     vector = SearchVector('name', weight='A') + SearchVector('ingredients', weight='B') + SearchVector('instructions', weight='C')
-    #     querset = querset.annotate(search=vector).filter(search=query)
-    #     querset = querset.annotate(rank=SearchRank(vector, query))
+    # if keywords: 
+    #     squery = SearchQuery(keywords)
+    #     svector = SearchVector('name', weight='A') + SearchVector('ingredients', weight='B') + SearchVector('instructions', weight='C')
+    #     # querset = querset.annotate(search=svector)
+    #     # querset = querset.filter(search=squery)
+    #     querset = querset.annotate(search=svector).filter(search=squery)
+    #     # querset = querset.annotate(rank=SearchRank(svector, squery)).order_by('-rank')
 
-    paginator= Paginator(search, 5)
+
+    paginator= Paginator(querset, 5)
     page = request.GET.get('page')
     contacts=paginator.get_page(page)
     
     context = {
         'querset': querset,
-        # 'contacts': contacts,
+        'contacts': contacts,
         'keywords': keywords,
         'search': search,
     }

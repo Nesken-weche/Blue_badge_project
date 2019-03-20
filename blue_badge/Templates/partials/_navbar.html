@@ -2,7 +2,7 @@
     <a href="{% url 'homePage' %}" class="navbar-brand my_brand"><h1>Recipes</h1></a>
     <!--searchbar-->
     <form method="GET" action="{% url 'searchRecipes' %}">
-        <input name='search' value="{{request.GET.search}}" placeholder="Search" class='searchbox'>
+        <input name='searchbar' value="{{request.GET.search}}" placeholder="Search" class='searchbox'>
         <button class="btn search-btn" type="submit">Search</button>
     </form>
 
