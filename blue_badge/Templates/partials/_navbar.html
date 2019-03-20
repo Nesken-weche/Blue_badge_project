@@ -1,5 +1,12 @@
 <div class="my_navbar navbar navbar-expand-md">
     <a href="{% url 'homePage' %}" class="navbar-brand my_brand"><h1>Recipes</h1></a>
+    <!--searchbar-->
+    <form method="GET" action="{% url 'searchRecipes' %}">
+        <input name='search' value="{{request.GET.search}}" placeholder="Search" class='searchbox'>
+        <button class="btn search-btn" type="submit">Search</button>
+    </form>
+
+    <!--Navbar links-->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle Navigation"> <i class="fas fa-ellipsis-h"></i>
     </button>
     <div class="collapse navbar-collapse" id="navbarContent">
@@ -8,9 +15,9 @@
             <h2> | </h2>
             
             {% if user.is_authenticated %}
-            <a href="{% url 'addRecipe' %}" class="nav-item nav-link my_links"><h4>New Recipe </h4></a>
-            <h2> | </h2>
             <a class="nav-item nav-link my_links" href="{% url 'myRecipe' %}"><h4>My Recipes </h4></a>
+            <h2> | </h2>
+            <a href="{% url 'addRecipe' %}" class="nav-item nav-link my_links"><h4>New Recipe </h4></a>
             <h2> | </h2>
             <a class="nav-item nav-link my_links" href="{% url 'logout' %}"><h4>Logout</h4></a>
             {% else %}

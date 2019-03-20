@@ -24,6 +24,10 @@
             <div>
                 <input type="hidden" name="id" value={{id}}>
             </div>
+            <label for="upload">Upload picture (optional) <br> </label>
+            <div class="media form-group">
+                <input type='file' name='upload'>
+            </div>
             <div class="form-group publish_q">
                 <label for="publish">Make recipe public (optional) </label>
                 {% if publish == False %}
