@@ -100,12 +100,12 @@ def update(request, id):
         return render(request, 'allrecipes/updaterecipe.html', context=context)
 
 def querysearch(request):
-    querset = Recipe.objects.filter(publish=True)
-    keywords = request.GET.get('searchbar')
+    querset = models.Recipe.objects.filter(publish=True)
+    keywords = request.GET.get('search')
     if keywords:
-        search = querset.filter(Q(name__icontains=keywords) | Q(instructions__icontains=keywords) | Q(ingredients__icontains=keywords))
+        search  = querset.filter(Q(name__icontains=keywords) | Q(instructions__icontains=keywords) | Q(ingredients__icontains=keywords))
     else:
-        search = Recipe.objects.filter(publish=True)
+        search = querset.filter()
 
     # if keywords: 
     #     squery = SearchQuery(keywords)
