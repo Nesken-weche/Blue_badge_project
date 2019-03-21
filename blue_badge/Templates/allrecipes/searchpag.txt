@@ -1,11 +1,7 @@
-I can't get pagination to work on searchresults.html,
-so I'm just removing it but I'm reluctant to just
-completely delete it, so here's the html code 
-for it. It works as it should, it's just in the
-views that the paginator doesn't quite work.
+I can't get pagination to work on searchresults.html, so I'm just removing it but I'm reluctant to just completely delete it, 
+so here's the html code for it. It works as it should, it's just in the views that the paginator doesn't quite work.
 
-Can be copy/pasted back into the code later 
-if trying to make pagination work.
+Can be copy/pasted back into the code later if trying to make pagination work.
 
 
 
