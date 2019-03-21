@@ -106,10 +106,6 @@ body {
     margin-right: 50px;
 }
 
-.recinfo {
-    margin-left: 210px;
-}
-
 .addrecipebutton {
     text-align: center;
     margin: 0px !important;
@@ -170,11 +166,13 @@ body {
 
 .recauthor a {
     color: var(--primary-light);
-    text-align: right;
+    text-align: right !important;
+    display: block;
+    margin-right: 40px;
 }
 
 .recauthor {
-    text-align: right;
+    text-align: right !important;
 }
 
 .pagination {

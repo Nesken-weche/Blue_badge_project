@@ -60,13 +60,13 @@ def user_recipes(request, username):
 
         return render(request, 'users/profile.html', context=selfcontext)
     else:
-        recipes_list = models.Recipe.objects.filter(publish=True, user=user1)    # not request.user, need to find out how to specify the other user
+        recipes_list = models.Recipe.objects.filter(publish=True, user=user1)  
         paginator= Paginator(recipes_list, 5)
         page = request.GET.get('page')
         contacts=paginator.get_page(page)
 
         context = {
-            'user_recipes': recipes_list,
+            'user_recipes': contacts,
             'recipe_list': contacts,
             'contacts': contacts,
             'user1': user1,

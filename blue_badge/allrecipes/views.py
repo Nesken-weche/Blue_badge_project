@@ -116,14 +116,14 @@ def querysearch(request):
     #     querset = querset.annotate(search=svector).filter(search=squery)
     #     # querset = querset.annotate(rank=SearchRank(svector, squery)).order_by('-rank')
 
-    # paginator= Paginator(search, 5)
-    # page = request.GET.get('page')
-    # contacts=paginator.get_page(page)
+    paginator= Paginator(search, 5)
+    page = request.GET.get('page')
+    contacts=paginator.get_page(page)
     
     context = {
         'querset': querset,
         'keywords': keywords,
-        'search': search,
-        # 'contacts': contacts,
+        'contacts': contacts,
+        'search': contacts,
     }
     return render(request, 'allrecipes/searchresults.html', context=context)
