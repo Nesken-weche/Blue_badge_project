@@ -30,10 +30,9 @@ def all(request):
 def add(request):
     if request.method == "POST":
         if request.FILES:
-            image = request.FILES['upload']
-            print(image)
             my_recipe = models.Recipe(name=request.POST["name"], ingredients=request.POST["ingredients"], instructions=request.POST["instructions"], user=request.user, image=request.FILES['upload'])
-        my_recipe = models.Recipe(name=request.POST["name"], ingredients=request.POST["ingredients"], instructions=request.POST["instructions"], user=request.user)
+        else:
+            my_recipe = models.Recipe(name=request.POST["name"], ingredients=request.POST["ingredients"], instructions=request.POST["instructions"], user=request.user)
         
         if 'publish' in request.POST:
             my_recipe.publish = True
@@ -67,8 +66,8 @@ def update(request, id):
         my_recipe.name = request.POST["name"]
         my_recipe.ingredients = request.POST["ingredients"]
         my_recipe.instructions = request.POST["instructions"]
-        # my_recipe.image = request.FILES["upload"]
-        if request.POST:
+    
+        if 'upload' in request.FILES:
             my_recipe.image = request.FILES['upload']
         else:
             print('not hitting')
@@ -117,14 +116,14 @@ def querysearch(request):
     #     querset = querset.annotate(search=svector).filter(search=squery)
     #     # querset = querset.annotate(rank=SearchRank(svector, squery)).order_by('-rank')
 
-    # paginator= Paginator(search, 5)
-    # page = request.GET.get('page')
-    # contacts=paginator.get_page(page)
+    paginator= Paginator(search, 5)
+    page = request.GET.get('page')
+    contacts=paginator.get_page(page)
     
     context = {
         'querset': querset,
         'keywords': keywords,
-        'search': search,
-        # 'contacts': contacts,
+        'contacts': contacts,
+        'search': contacts,
     }
     return render(request, 'allrecipes/searchresults.html', context=context)

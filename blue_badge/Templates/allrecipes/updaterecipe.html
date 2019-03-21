@@ -7,7 +7,7 @@
     <div class='container-fluid col-10'>
         <br>
         <h1 class='AR_heading'>Update Recipe</h1>
-        <form class="update_form" action="{% url 'updateRecipe' id %}" method="POST">
+        <form class="update_form" action="{% url 'updateRecipe' id %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-group">
                 <label for="name">Name of Recipe</label>
