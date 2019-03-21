@@ -24,23 +24,50 @@
             <div class='AR_heading'>
                 <h1> {{ user1.username }}'s Recipes </h1>
             </div>
-                {% if user_recipes %}
-                    {% for recipe in user_recipes %}
-                        <div class='recipe_item stitched'>
-                            <h3>{{ recipe.name }}</h3>
-                            <p>
-                                <h4>Ingredients:</h4> {{ recipe.ingredients }} <br>
-                                <br>
-                                <h4>Instructions:</h4> {{ recipe.instructions }}
-                            </p>
-                        </div>
-                        <br>
-                    {% endfor %}
-                {% else %}
-                    <br><br><br>
-                    <h2>No Recipes have been created yet</h2>
-                {% endif %}
+            <br>
+            <div class="pagination row" id=allpag>
+                <div class='col-4'></div>
+                <span class="step-links col-4">
+                    {% if contacts.has_previous %}
+                        <a href="?page=1"> &laquo; first </a>
+                            | 
+                        <a href="?page={{ contacts.previous_page_number }}"> previous </a>
+                            | 
+                    {% endif %}
+            
+                    <span class="current">
+                            Page {{ contacts.number }} of {{ contacts.paginator.num_pages }} 
+                    </span>
+            
+                    {% if contacts.has_next %}
+                            | 
+                        <a href="?page={{ contacts.next_page_number }}"> next </a>
+                            | 
+                        <a href="?page={{ contacts.paginator.num_pages }}"> last &raquo; </a>
+                    {% endif %}
+                </span>
+                <div class='col-4'></div>
+            </div>
+            <br>
+            {% if user_recipes %}
+                {% for recipe in user_recipes %}
+                    <div class='recipe_item stitched'>
+                        <img src="{{ recipe.image.url }}" class="recpic">
+                        <h3>{{ recipe.name }}</h3>
+                        <p>
+                            <h4>Ingredients:</h4> {{ recipe.ingredients }} <br>
+                            <br>
+                            <h4>Instructions:</h4> {{ recipe.instructions }}
+                        </p>
+                    </div>
+                    <br>
+                {% endfor %}
+            {% else %}
+                <br><br><br>
+                <h2>No Recipes have been created yet</h2>
+            {% endif %}
         </div>
+        <br>
     </div>
     <br>
     <div class='col-1'></div>
