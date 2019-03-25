@@ -134,6 +134,10 @@ body {
     margin-left: 15px;
 }
 
+.modal-dialog {
+    color: var(--accent);
+}
+
 .edit_profile_btn {
     background-color: var(--primary-dark);
     border-color: var(--primary-dark);
